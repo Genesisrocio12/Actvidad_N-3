@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav-component></nav-component>
+    <header-component></header-component>
+
+    <main>
+        <project-list src="http://localhost:5000/proyectos"></project-list>
+        <participant-list src="http://localhost:5000/participantes"></participant-list>
+        <project-participant-list></project-participant-list>
+    </main>
+
+    <footer-component></footer-component>
+
+    <script type="module" src="js/nav-component.js"></script>
+    <script type="module" src="js/header-component.js"></script>
+    <script type="module" src="js/project-list.js"></script>
+    <script type="module" src="js/participant-list.js"></script>
+    <script type="module" src="js/project-form.js"></script>
+    <script type="module" src="js/participant-form.js"></script>
+    <script type="module" src="js/project-participant-list.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/footer-component.js"></script>
+</body>
+
+</html>
