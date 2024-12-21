@@ -19,7 +19,7 @@ Creación de la base de datos "db_proyecto"
 - **Contenedor Principal**: Componente que encapsula la aplicación y maneja la estructura global.
 - **API REST**: Endpoints para gestionar las tablas de proyectos, participantes y su relación, proporcionando operaciones de CRUD (Crear, Leer, Actualizar, Eliminar).
 
-  ## Configuraciones
+## Configuraciones
   * En el fichero node.js de api_rest debemos configurar los accesos a la base de datos de "proyectos" mysql. Tener en cuenta que el puerto 5000 permite ejecutar la API en localhost.
 
 ## Frameworks y herramientas
