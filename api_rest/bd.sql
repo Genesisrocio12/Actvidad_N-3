@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- Crear la base de datos
 CREATE DATABASE IF NOT EXISTS db_projects;
 USE db_projects;
@@ -41,3 +42,34 @@ INSERT INTO participants (name, email, role) VALUES
 ('Juan Pérez', 'juan@email.com', 'Desarrollador'),
 ('María García', 'maria@email.com', 'Diseñadora'),
 ('Carlos López', 'carlos@email.com', 'Project Manager');
+=======
+CREATE DATABASE db_proyectos;
+USE db_proyectos;
+
+CREATE TABLE proyectos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    estado ENUM('Activo', 'Completado', 'Cancelado') DEFAULT 'Activo'
+);
+
+CREATE TABLE participantes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    rol VARCHAR(50),
+    estado BOOLEAN DEFAULT true
+);
+
+CREATE TABLE proyecto_participante (
+    proyecto_id INT,
+    participante_id INT,
+    fecha_asignacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (proyecto_id, participante_id),
+    FOREIGN KEY (proyecto_id) REFERENCES proyectos(id) ON DELETE CASCADE,
+    FOREIGN KEY (participante_id) REFERENCES participantes(id) ON DELETE CASCADE
+);
+>>>>>>> 687100ce4934709fc022fb7b9be2006956a1032f
