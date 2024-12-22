@@ -49,15 +49,25 @@ Para que la aplicación funcione correctamente, es necesario configurar algunos 
   
 - **Puerto de Ejecución**: El puerto 5000 se utiliza para ejecutar la API en localhost. Es importante asegurarse de que este puerto esté libre y no esté siendo utilizado por otro servicio.
 
-## Aspectos no Implementados en la Aplicación
+## Endpoints de la API
 
-En la implementación actual del proyecto, hay algunos aspectos que no se han considerado pero que podrían mejorar la funcionalidad y la experiencia del usuario:
+A continuación se describen los endpoints implementados en el archivo `index.js` para gestionar los datos de proyectos, participantes y la ruta raíz:
 
-1. **Autenticación y Autorización**:
-   - No se ha implementado ningún mecanismo de autenticación y autorización en la API. Esto significa que cualquier persona con acceso a la API puede realizar operaciones CRUD en la base de datos. Implementar un sistema de autenticación (por ejemplo, utilizando JWT - JSON Web Tokens) ayudaría a asegurar que solo usuarios autorizados puedan acceder y modificar los datos.
+- **GET /proyectos**:
+  - Descripción: Obtiene la lista de todos los proyectos.
+  - Respuesta: Devuelve un array de objetos de proyectos.
 
-2. **Validación y Manejo de Errores en el Frontend**:
-   - Actualmente, no hay validación de datos en los formularios del frontend más allá de los atributos `required`. Una mejora sería añadir validaciones adicionales (por ejemplo, validación de formatos de correo electrónico, longitud mínima/máxima de los campos) y mostrar mensajes de error amigables al usuario. Además, sería beneficioso tener un manejo más robusto de errores para mostrar mensajes claros cuando algo va mal en las solicitudes a la API.
+  ```javascript
+  app.get('/proyectos', (req, res) => {
+      db.query('SELECT * FROM proyectos', (err, results) => {
+          if (err) {
+              console.error('Error al obtener proyectos:', err);
+              res.status(500).json({ error: 'Error al cargar los proyectos' });
+              return;
+          }
+          res.json(results);
+      });
+  });
 
 ## Frameworks y Herramientas
 
