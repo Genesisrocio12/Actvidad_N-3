@@ -1,42 +1,117 @@
-# Actvidad_N-3
-GESTIÓN DE PROYECTOS Y PARTICIPANTES CON CUSTOM ELEMENTS 
+# Actividad_N-3
+**GESTIÓN DE PROYECTOS Y PARTICIPANTES CON CUSTOM ELEMENTS**
 
-# Gestión de Proyectos y Participantes
+## Gestión de Proyectos y Participantes
 
-Este proyecto es una aplicación web para gestionar la relación entre proyectos y participantes. Permite registrar, visualizar, actualizar y eliminar proyectos y participantes en una relación de muchos a muchos. La aplicación utiliza Custom Elements para construir una interfaz modular y reutilizable, y una API REST desarrollada con Express y MySQL para gestionar los datos.
+Este proyecto es una aplicación web diseñada para gestionar la relación entre proyectos y participantes. La aplicación permite registrar, visualizar, actualizar y eliminar tanto proyectos como participantes, gestionando una relación de muchos a muchos entre ellos. Para construir una interfaz modular y reutilizable, se utilizan Custom Elements, Shadow DOM y Templates. Además, una API REST desarrollada con Express y MySQL se encarga de gestionar los datos en la base de datos.
 
-## Bases de datos
-Creación de la base de datos "db_proyecto"
-- colección "proyectos": id, nombre, descripción, fecha_inicio, fecha_fin, estado.
-- colección "participantes": id, nombre, apellido, email, rol, estado.
+## Bases de Datos
 
-## Interfaz
+La base de datos "db_proyecto" es el núcleo de almacenamiento de datos de la aplicación. Está compuesta por las siguientes colecciones:
 
-- **Menú de Navegación**: Componente que permite alternar entre las vistas de gestión de proyectos y participantes.
-- **Encabezado**: Componente que muestra los datos personales del usuario (nombre, rol y fecha actual).
-- **Tabla de Visualización**: Componente para mostrar las relaciones entre proyectos y participantes con opciones para registrar, actualizar y eliminar datos.
-- **Pie de Página**: Componente que muestra información adicional, como derechos de autor o enlaces de contacto.
-- **Contenedor Principal**: Componente que encapsula la aplicación y maneja la estructura global.
-- **API REST**: Endpoints para gestionar las tablas de proyectos, participantes y su relación, proporcionando operaciones de CRUD (Crear, Leer, Actualizar, Eliminar).
+- **Proyectos**: 
+  - `id`: Identificador único del proyecto.
+  - `nombre`: Nombre del proyecto.
+  - `descripcion`: Descripción detallada del proyecto.
+  - `fecha_inicio`: Fecha de inicio del proyecto.
+  - `fecha_fin`: Fecha de finalización del proyecto.
+  - `estado`: Estado actual del proyecto (Activo, Completado, Cancelado).
+
+- **Participantes**:
+  - `id`: Identificador único del participante.
+  - `nombre`: Nombre del participante.
+  - `apellido`: Apellido del participante.
+  - `email`: Correo electrónico del participante, debe ser único.
+  - `rol`: Rol o posición del participante dentro del proyecto.
+  - `estado`: Estado del participante (Activo, Inactivo).
+
+## Interfaz de Usuario
+
+La interfaz de usuario de la aplicación está compuesta por varios componentes clave, cada uno desempeñando un papel específico:
+
+- **Menú de Navegación**: Este componente permite a los usuarios alternar fácilmente entre las vistas de gestión de proyectos y de participantes. Es una barra de navegación estilizada que mejora la usabilidad de la aplicación.
+  
+- **Encabezado**: Un componente que muestra la información del usuario, incluyendo el nombre, el rol y la fecha actual. Este componente proporciona un contexto adicional para el usuario.
+
+- **Tabla de Visualización**: Este componente muestra las relaciones entre proyectos y participantes. Permite registrar, actualizar y eliminar datos con facilidad, proporcionando una visión clara y organizada de las relaciones.
+
+- **Pie de Página**: Componente que se encuentra al final de la página y muestra información adicional, como los derechos de autor y enlaces de contacto. Es un buen lugar para mostrar información menos prioritaria pero aún relevante.
+
+- **Contenedor Principal**: Este componente encapsula toda la aplicación, gestionando la estructura global y asegurando que todos los componentes se visualicen correctamente.
+
+- **API REST**: La API proporciona endpoints para gestionar las tablas de proyectos, participantes y sus relaciones. Admite operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y permite una interacción fluida entre el frontend y la base de datos.
 
 ## Configuraciones
-  * En el fichero node.js de api_rest debemos configurar los accesos a la base de datos de "proyectos" mysql. Tener en cuenta que el puerto 5000 permite ejecutar la API en localhost.
 
-## Frameworks y herramientas
+Para que la aplicación funcione correctamente, es necesario configurar algunos aspectos en el fichero de `node.js` de `api_rest`:
 
-- **Frontend**: HTML, CSS, JavaScript, Custom Elements, Shadow DOM, Templates
-- **Backend**: Node.js, Express
-- **Base de Datos**: MySQL con phpmyadmin del servidor xampp.
-- **Herramientas**: Visual Studio Code, Live Server, Postman
+- **Accesos a la Base de Datos**: Configurar los detalles de conexión a la base de datos MySQL, incluyendo el host, el usuario, la contraseña y el nombre de la base de datos.
+  
+- **Puerto de Ejecución**: El puerto 5000 se utiliza para ejecutar la API en localhost. Es importante asegurarse de que este puerto esté libre y no esté siendo utilizado por otro servicio.
+
+## Aspectos no Implementados en la Aplicación
+
+En la implementación actual del proyecto, hay algunos aspectos que no se han considerado pero que podrían mejorar la funcionalidad y la experiencia del usuario:
+
+1. **Autenticación y Autorización**:
+   - No se ha implementado ningún mecanismo de autenticación y autorización en la API. Esto significa que cualquier persona con acceso a la API puede realizar operaciones CRUD en la base de datos. Implementar un sistema de autenticación (por ejemplo, utilizando JWT - JSON Web Tokens) ayudaría a asegurar que solo usuarios autorizados puedan acceder y modificar los datos.
+
+2. **Validación y Manejo de Errores en el Frontend**:
+   - Actualmente, no hay validación de datos en los formularios del frontend más allá de los atributos `required`. Una mejora sería añadir validaciones adicionales (por ejemplo, validación de formatos de correo electrónico, longitud mínima/máxima de los campos) y mostrar mensajes de error amigables al usuario. Además, sería beneficioso tener un manejo más robusto de errores para mostrar mensajes claros cuando algo va mal en las solicitudes a la API.
+
+## Frameworks y Herramientas
+
+Este proyecto utiliza una combinación de tecnologías modernas para el desarrollo frontend y backend:
+
+- **Frontend**:
+  - **HTML**: Para la estructura básica de la aplicación web.
+  - **CSS**: Para el estilo y la presentación de los elementos de la interfaz.
+  - **JavaScript**: Para la lógica y la interacción del lado del cliente.
+  - **Custom Elements**: Para crear componentes reutilizables.
+  - **Shadow DOM**: Para encapsular estilos y mantener la integridad del componente.
+  - **Templates**: Para definir contenido que puede ser reutilizado.
+
+- **Backend**:
+  - **Node.js**: Plataforma para la construcción del backend de la aplicación.
+  - **Express**: Framework para construir la API REST y manejar las rutas y las solicitudes.
+
+- **Base de Datos**:
+  - **MySQL**: Sistema de gestión de bases de datos relacional utilizado para almacenar los datos.
+  - **phpMyAdmin**: Herramienta de gestión de MySQL accesible a través del servidor XAMPP.
+
+- **Herramientas**:
+  - **Visual Studio Code**: Editor de código fuente utilizado para el desarrollo.
+  - **Live Server**: Extensión para Visual Studio Code que permite un servidor local de desarrollo con recarga en vivo.
+  - **Postman**: Herramienta utilizada para probar y desarrollar las API, enviando solicitudes HTTP y viendo las respuestas.
 
 ## Requisitos
 
-- Node.js
-- MySQL
-- XAMPP o similar para gestionar MySQL
-- Visual Studio Code
+Para ejecutar este proyecto, necesitas tener instalados los siguientes programas:
+
+- **Node.js**: Entorno de ejecución para JavaScript.
+- **MySQL**: Sistema de gestión de bases de datos.
+- **XAMPP**: Paquete de software que incluye Apache, MySQL y PHP, utilizado para gestionar MySQL.
+- **Visual Studio Code**: Editor de código fuente.
 
 ## Ejecución
-- levantar el servidor de phpmyadmin
-- abrir la terminal de la api_rest en Visual Studio Code. Ejecutar el script: npx nodemon index.js
-- ejecutar el fichero index.html con Live Server
+
+Para poner en marcha la aplicación, sigue estos pasos:
+
+1. **Levantar el servidor de phpMyAdmin**:
+   - Abre XAMPP y asegúrate de que el servidor MySQL está en ejecución.
+   - Abre phpMyAdmin para gestionar la base de datos.
+
+2. **Abrir la terminal de `api_rest` en Visual Studio Code**:
+   - Navega a la carpeta `api_rest` y abre una terminal.
+   - Ejecuta el script para iniciar el servidor de la API:
+     ```bash
+     npx nodemon index.js
+     ```
+
+3. **Ejecutar el archivo `index.html` con Live Server**:
+   - Abre la carpeta del frontend en Visual Studio Code.
+   - Haz clic derecho en `index.html` y selecciona `Open with Live Server`.
+   - Asegúrate de que el Live Server está ejecutándose correctamente y navega a la dirección proporcionada (normalmente `http://localhost:5500`).
+
+Siguiendo estos pasos, podemos tener la aplicación en funcionamiento y estar listo para gestionar proyectos y participantes con mayor facilidad.
+
